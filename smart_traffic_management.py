@@ -19,7 +19,7 @@ def detect_cars(image):
 
     for result in results.boxes:
         classid = int(result.cls.item())
-        if classid == 2:  # YOLO class ID for cars (ensure correct ID)
+        if classid == 2:  
             car_count += 1
 
     return car_count
@@ -49,16 +49,16 @@ def process_intersection(images):
         vehicle_counts.append(detect_cars(img))
         emergency_flags.append(detect_emergency_vehicle(img))
 
-    # Optimize traffic signal timings using genetic algorithm
+    
     optimized_times = optimize_traffic(vehicle_counts)
     return optimized_times
 
 if __name__ == "__main__":
-    # Load four images
+   
     image_paths = ["1mg.jpg", "2mg.jpg", "3mg.jpg", "4mg.jpg"]
     images = [cv.imread(path) for path in image_paths]
 
-    # Ensure all images are loaded correctly
+    
     if any(img is None for img in images):
         print("Error: One or more images could not be loaded.")
     else:
